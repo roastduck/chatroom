@@ -6,8 +6,14 @@ module.exports = {
     /// log directory
     logDir: "/log",
 
-    /// also log to stdout while logging to file
-    logToStdout: true,
+    /// db url to MongoDB
+    dbUrl: "mongodb://localhost/chatroom",
+
+    /// used to sign cookies for session
+    sessionSecret: "some session salt",
+
+    /// rounds used by BCrypt to encrypt passwords
+    bcryptRounds: 8,
 
     /// Port to serve the web
     port: 8080

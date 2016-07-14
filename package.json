@@ -8,10 +8,17 @@
     "version": "0.0.1",
     "dependencies": {
         "express": "4.x",
-        "morgan": "1.7.x",
+        "mongoose": "4.x",
+        "morgan": "~1.7.0",
         "file-stream-rotator": "0.0.6",
         "fs": "0.0.2",
-        "path": "0.12.7"
+        "path": "0.12.7",
+        "express-session": "~1.14.0",
+        "connect-mongo": "~1.2.1",
+        "body-parser": "~1.15.2",
+        "passport": "0.3.2",
+        "passport-local": "~1.0.0",
+        "bcrypt": "0.8.7"
     }
 }
 
