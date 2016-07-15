@@ -1,0 +1,12 @@
+@media (min-width: 768px) {
+    .hide-nxs {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .hide-xs {
+        display: none;
+    }
+}
+

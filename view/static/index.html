@@ -1,14 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="appIndex">
     <head>
         <title>Chatroom</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <!-- the three above MUST be in the beginning -->
         <meta name="author" content="RD" />
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-        <!-- for debug -->
-        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.0.0.min.js"></script>
+        <script src="//cdn.bootcss.com/angular.js/1.5.7/angular.min.js"></script>
+
+        <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+        <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script> <!-- required before bootstrap.min.js -->
+        <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" href="index.css" />
+        <script src="index.js"></script>
     </head>
-    <body>
-        <h2>It Works!</h2>
+    <body ng-controller="IndexController">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="hide-xs col-sm-3">
+
+                    </div>
+                    <div class="col-xs-12 col-sm-9">
+                        <a class="navbar-brand {{talkingTo?'show':'hidden'}}" href="userinfo.html#/{{talkingTo.id}}" target="_blank">
+                            {{talkingTo.name}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div id="login-register" class="modal fade" data-backdrop="static" data-keyboard="false" data-show="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Log in or register</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-warning bg-danger {{auth.errMsg?'show':'hidden'}}"><strong>{{auth.errMsg}}</strong></p>
+                        <form>
+                            <div class="form-group">
+                                <label for="input-username">User name</label>
+                                <input id="input-username" class="form-control" type="text" ng-model="auth.username"></input>
+                            </div>
+                            <div class="form-group">
+                                <label for="input-password">Password</label>
+                                <input id="input-password" class="form-control" type="password" ng-model="auth.password"></input>
+                            </div>
+                            <!-- TODO: repeat password when registering -->
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default {{auth.allowSubmit?'':'disabled'}}" ng-click="auth.register()">
+                            Register
+                        </button>
+                        <button type="button" class="btn btn-primary {{auth.allowSubmit?'':'disabled'}}" ng-click="auth.login()">
+                            Log in
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script> $("#login-register").modal(); </script>
     </body>
 </html>
+

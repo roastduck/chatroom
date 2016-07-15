@@ -60,7 +60,7 @@ function setUpPassport(passport, passportLocal, model) {
 
 module.exports = (function(mongoose, bcrypt, passport, passportLocal, config) {
     var schema = new mongoose.Schema({
-        name: { type: String, required: true },
+        name: { type: String, required: true, unique: true },
         password: { type: String, required: true, set: encrypt(bcrypt, config) }
     });
     schema.method({

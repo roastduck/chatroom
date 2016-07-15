@@ -40,6 +40,7 @@ app.use(express.static(path.join(__dirname, 'view/static')));
  * parse require body
  */
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 /*
  * connect to db
