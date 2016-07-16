@@ -3,6 +3,12 @@ angular.module("appIndex", [])
         this.register = function() {
             var auth = this;
             if (! this.allowSubmit) return;
+            if (auth.password != auth.repeatPassword)
+            {
+                auth.errMsg = "wrong repeated password";
+                return;
+            }
+
             this.allowSubmit = false;
             $http.post("/dynamic/public/register", {
                 username: this.username,
@@ -14,6 +20,7 @@ angular.module("appIndex", [])
                 auth.errMsg = "connection failed";
             }).finally(function() {
                 auth.allowSubmit = true;
+                auth.hideModal();
             });
         };
 
@@ -31,6 +38,7 @@ angular.module("appIndex", [])
                 auth.errMsg = "connection failed";
             }).finally(function() {
                 auth.allowSubmit = true;
+                auth.hideModal();
             });
         };
 
@@ -47,6 +55,16 @@ angular.module("appIndex", [])
 
         /// error message
         this.errMsg = "";
+
+        /// login or register?
+        this.toLogin = true;
+
+        /// Whether to show the modal
+        this.showModal = function() { $("#login-register-modal").modal("show"); }
+        this.hideModal = function() { $("#login-register-modal").modal("hide"); }
+
+        /// Initialize modal
+        $("#login-register-modal").modal();
     }])
 
     .controller("IndexController", ["$scope", "auth", function($scope, auth) {
